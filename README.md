@@ -17,7 +17,7 @@ It can be said that this implementation is abstracted from us
 # Abstraction in OOP
 
 A class as a blueprint defines what fields and methods it has. Not every method or logic that is used in implementing a method or a field need to known to other classes.
-To achieve this we use access modifiers using which we can provide access only to necessary methods or fields that are required for other classes
+To achieve this we use interfaces and abstract classes usually
 
 
 # Abstraction Types
@@ -54,7 +54,17 @@ Here name and gender can be accessed by other class directly, but if they want t
 				// If both are Good then return verified else Not verified
 				return result;
 			} 
-			private String secretProcessOfVerification(PersonalDetails personalDetails) {
+			
+		}
+		
+		interface Verification {
+			String secretProcessOfVerification(PersonalDetails personalDetails);
+		}
+		
+		
+		class VerificationImpl implements Verification {
+			@Override
+			String secretProcessOfVerification(PersonalDetails personalDetails) 			{
 				 // Some complicated secret process which returns Good and Bad
 		   }
 		
@@ -62,6 +72,8 @@ Here name and gender can be accessed by other class directly, but if they want t
 		
 Here we have a class which does some person's verification. For the verification process to trigger the method doVerification() with person's details have to passed
 
-The person should not know how the verification is done. Here we are doing some normal verification and getting the result of that and someProcessVerification() which no one should know and getting the result. Based on both results we are sending final verification status
+The person should not know how the verification is done. Here we are doing some normal verification and getting the result of that and secretProcessOfVerification() which no one should know how is is done. Based on both results we are sending final verification status.
+
+Notice that we used interface to obtain abstraction. We can also use an abstract class. Even for the doVerification() method we can create either interface or abstract class and make VerificationProcess class implement it
 
 
